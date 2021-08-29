@@ -4,15 +4,11 @@ import {Add, Challenge} from "./challenge";
 @Injectable({
   providedIn: 'root'
 })
-export class ChallengeServiceService {
+export class ChallengeService {
 
   constructor() { }
 
   public getChallenge(){
     return new Add();
-  }
-
-  public checkSolution(challenge: Challenge, testSolution: string): boolean{
-    return challenge.getSolution().toLowerCase() == testSolution.toLowerCase()
   }
 }

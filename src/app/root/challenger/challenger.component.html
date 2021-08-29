@@ -1,1 +1,9 @@
-<p>challenger works!</p>
+<div class="container d-flex flex-column vh-100" style="align-items: center; justify-content: space-around;">
+
+  <div class="challenge-card" style="height: 300px">
+    <h6 class="challenge-text">{{currentChallenge.getText()}}</h6>
+    <input [(ngModel)]="currentUserSolution" class="solution-field" type="text" (keydown.enter)="checkChallenge()"/>
+  </div>
+  <div></div>
+
+</div>
