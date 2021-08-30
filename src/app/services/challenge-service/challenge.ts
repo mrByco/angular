@@ -8,7 +8,8 @@ function randomInt(min: number, max: number){
 export interface Challenge {
   type: string,
   getSolution: () => string,
-  getText: () => string
+  getText: () => string,
+  firstCheck: boolean
 }
 
 export function checkChallengeSolution(challenge: Challenge, testSolution: string): boolean{
@@ -16,18 +17,26 @@ export function checkChallengeSolution(challenge: Challenge, testSolution: strin
 }
 
 export class Add implements Challenge {
+  public readonly defaultPreferences = {
+    operandSize: 30,
+    numberOfOperands: 0.1,
+  }
+
+
   getSolution(): string {
     return `${this.numbers.reduce(((previousValue, currentValue) => previousValue + currentValue))}`;
   }
   type: '+' = '+';
   numbers: number[] = [];
+  firstCheck: boolean = true;
 
-  constructor(){
-    this.numbers = [randomInt(10, 99), randomInt(10, 99)]
+  constructor(level: number){
+    let getOperand = (operandTargetSize: number) =>Math.floor(operandTargetSize + randomInt(Math.floor(operandTargetSize * 0.3), Math.floor(operandTargetSize * 2)));
+    let operandSize= level * this.defaultPreferences.operandSize;
+    this.numbers = [getOperand(operandSize), getOperand(operandSize)];
   }
 
   getText(): string {
-    console.log(this);
     return `${this.numbers.reduce((pre, curr, i) => `${pre + (i > 0 ? " + " : "") + curr}`, '')}`;
   }
 }

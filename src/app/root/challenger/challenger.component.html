@@ -3,6 +3,8 @@
   <div class="challenge-card" style="height: 300px">
     <h6 class="challenge-text">{{currentChallenge.getText()}}</h6>
     <input [(ngModel)]="currentUserSolution" class="solution-field" type="text" (keydown.enter)="checkChallenge()"/>
+    <p>{{challengeService.currentLevel.toFixed(4)}}</p>
+    <p>{{checkTime}}</p>
   </div>
   <div></div>
 
